@@ -1,0 +1,1 @@
+print(input(), 'ni hao, xin nian kuai le!')
