@@ -14,7 +14,7 @@ int main() {
 	int n; cin >> n;
 	int pointsTo[n]; memset(pointsTo, 0, sizeof(pointsTo));
 	vector<int> pointedFrom[n];
-	priority_queue<int> cur;
+	priority_queue<int> tallestOnes;
 	int ans[n]; memset(ans, 0, sizeof(ans));
 	for (int i = 0; i < n; i++) {
 		int a, b; cin >> a >> b;
@@ -28,22 +28,18 @@ int main() {
 			pointsTo[i]++;
 			pointedFrom[b].push_back(i);
 		}
-		if(a<0 && b<0){
-			cur.push(i);
-		}
+		if(a<0 && b<0) tallestOnes.push(i);
 	}
 
-    int prev = n;
-    while(!cur.empty()){
-        int now = cur.top(); cur.pop();
-        ans[now] = prev;
-        prev--;
+    int height = n;
+    while(!tallestOnes.empty()){
+        int rightmostCandidate = tallestOnes.top(); tallestOnes.pop();
+        ans[rightmostCandidate] = height;
+        height--;
 
-        for(auto x : pointedFrom[now]){
+        for(auto x : pointedFrom[rightmostCandidate]){
             pointsTo[x]--;
-            if(pointsTo[x] == 0){
-                cur.push(x);
-            }
+            if(pointsTo[x] == 0) tallestOnes.push(x);
         }
     }
 
