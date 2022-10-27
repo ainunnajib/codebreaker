@@ -29,7 +29,6 @@ int main() {
 			pointedFrom[b].push_back(i);
 		}
 		if(a<0 && b<0){
-			ans[i] = n;
 			cur.push(i);
 		}
 	}
@@ -41,7 +40,6 @@ int main() {
         prev--;
 
         for(auto x : pointedFrom[now]){
-            if(ans[x] > 0) continue;
             pointsTo[x]--;
             if(pointsTo[x] == 0){
                 cur.push(x);
