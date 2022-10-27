@@ -34,10 +34,6 @@ int main() {
 		}
 	}
 
-	for(int i = 0; i < n; i++){
-		sort(pointedFrom[i].begin(), pointedFrom[i].end(), greater<int>());
-	}
-
     int prev = n;
     while(!cur.empty()){
         int now = cur.top(); cur.pop();
